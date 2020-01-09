@@ -32,6 +32,7 @@ def test_languages_recognised():
     assert detect_language.detect_language("/tmp/some_file.gvy") == "Groovy"
     assert detect_language.detect_language("/tmp/some_file.ex") == "Elixir"
     assert detect_language.detect_language("/tmp/some_file.exs") == "Elixir"
+    assert detect_language.detect_language("/tmp/some_file.elm") == "Elm"
     assert detect_language.detect_language("/tmp/some_file.erb") == "ERB"
     assert detect_language.detect_language("/tmp/some_file.html.erb") == "ERB"
     assert detect_language.detect_language("/tmp/some_file.fs") == "F#"
@@ -56,10 +57,14 @@ def test_languages_recognised():
     assert detect_language.detect_language("/tmp/some_file.m") == "MATLAB"
     assert detect_language.detect_language(
         "/tmp/some_file.mm") == "Objective-C"
+    assert detect_language.detect_language("/tmp/some_file.pkb") == "PLSQL"
+    assert detect_language.detect_language("/tmp/some_file.pks") == "PLSQL"    
     assert detect_language.detect_language("/tmp/some_file.pl") == "Perl"
     assert detect_language.detect_language("/tmp/some_file.php") == "PHP"
     assert detect_language.detect_language(
         "/tmp/some_file.proto") == "Protocol Buffer"
+    assert detect_language.detect_language("/tmp/some_file.pks") == "PLSQL"
+    assert detect_language.detect_language("/tmp/some_file.pkb") == "PLSQL"
     assert detect_language.detect_language("/tmp/some_file.py") == "Python"
     assert detect_language.detect_language("/tmp/some_file.r") == "R"
     assert detect_language.detect_language("/tmp/some_file.rb") == "Ruby"
