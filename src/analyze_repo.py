@@ -19,6 +19,7 @@ class AnalyzeRepo:
         self.commit_list = {}
         self.user_commits = {}
 
+
     def create_commits_entity_from_branch(self, branch):
         '''
         Extract the commits from a given branch
@@ -68,7 +69,7 @@ class AnalyzeRepo:
             pool.join()
 
         for result in self.results:
-            self.commit_list[result['hash']].set_commit_stats(result['stats'])
+            self.commit_list[result['hash']].set_commit_stats(result['stats'], self.repo.working_dir)
 
     def flag_duplicated_commits(self):
         '''
@@ -87,6 +88,15 @@ class AnalyzeRepo:
                     self.total -= 1
 
     def callback_func(self, data):
+        # Sanitize filenames because they might have weird characters
+        # Also cast dict.keys() to the list() so we don't get Runtime Errors
+        keys = list(data["stats"].items())
+        for k, v in keys:
+            sanitized_key = sanitize_filename(k)
+            if sanitized_key != k:
+                data["stats"][sanitized_key] = v
+                data["stats"].pop(k, None)
+
         self.results.append(data)
         self.prog += 1
         progress(self.prog, self.total, 'Analyzing commits')
@@ -98,4 +108,7 @@ def call_set_commit_stats(h, commit):
     return ret
 
 
-
+def sanitize_filename(path):
+    if len(path) > 1 and not path[-1].isalnum():
+        path = path[:-1] 
+    return path

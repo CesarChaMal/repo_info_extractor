@@ -1,4 +1,5 @@
 import os
+from .detect_language_from_file import detect_language_from_file 
 
 supported_languages = {
     '1C Enterprise': ['bsl', 'os'],
@@ -18,6 +19,7 @@ supported_languages = {
     'Elixir': ['ex', 'exs'],
     'Elm': ['elm'],
     'ERB': ['erb'],
+    'Erlang': ['erl', 'hrl'],
     'F#': ['fs', 'fsi', 'fsx', 'fsscript'],
     'Fortran': ['f90', 'f95', 'f03', 'f08', 'for'],
     'Go': ['go'],
@@ -33,6 +35,7 @@ supported_languages = {
     'Lua': ['lua'],
     'MATLAB': ['m'],
     'Objective-C': ['mm'],
+    'OpenEdge ABL': ['p', 'ab', 'w', 'i', 'x', 'cls'],
     'Perl': ['pl'],
     'PHP': ['php'],
     'PLSQL': ['pks', 'pkb'],
@@ -47,13 +50,13 @@ supported_languages = {
     'Shell': ['sh'],
     'Smalltalk': ['st'],
     'Stylus': ['styl'],
+    'Svelte': ['svelte'],
     'Swift': ['swift'],
     'TypeScript': ['ts', 'tsx'],
     'Vue': ['vue'],
 }
 
 _ext_lang = {}
-
 
 def _build_ext_lang_map():
     """
@@ -77,6 +80,11 @@ def detect_language(file_path):
         return 'Makefile'
 
     ext = file_name.split('.')[-1].lower()
+    if ext == 'm':
+        lang = detect_language_from_file(file_path)
+        if lang is not None:
+            return lang
+        return ''    
 
     if ext in _ext_lang:
         return _ext_lang[ext]
