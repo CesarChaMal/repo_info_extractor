@@ -237,3 +237,4 @@ def _get_temp_repo_path():
 def _log_info(message, *argv):
     timed_message = "[%s] %s" % (datetime.now().strftime("%d/%m/%Y %H:%M:%S"), message)
     print(timed_message, *argv)
+    # _log_info(timed_message, *argv)
