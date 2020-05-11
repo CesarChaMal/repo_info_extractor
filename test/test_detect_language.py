@@ -35,6 +35,7 @@ def test_languages_recognised():
     assert detect_language.detect_language("/tmp/some_file.groovy") == "Groovy"
     assert detect_language.detect_language("/tmp/some_file.gsh") == "Groovy"
     assert detect_language.detect_language("/tmp/some_file.gvy") == "Groovy"
+    assert detect_language.detect_language("/tmp/some_file.Ejs") == "EJS"
     assert detect_language.detect_language("/tmp/some_file.ex") == "Elixir"
     assert detect_language.detect_language("/tmp/some_file.exs") == "Elixir"
     assert detect_language.detect_language("/tmp/some_file.elm") == "Elm"
@@ -53,6 +54,7 @@ def test_languages_recognised():
     assert detect_language.detect_language("/tmp/some_file.for") == "Fortran"
     assert detect_language.detect_language("/tmp/some_file.go") == "Go"
     assert detect_language.detect_language("/tmp/some_file.lhs") == "Haskell"
+    assert detect_language.detect_language("/tmp/some_file.hs") == "Haskell"
     assert detect_language.detect_language("/tmp/some_file.html") == "HTML"
     assert detect_language.detect_language("/tmp/some_file.htm") == "HTML"
     assert detect_language.detect_language("/tmp/some_file.json") == "JSON"
@@ -62,6 +64,7 @@ def test_languages_recognised():
     assert detect_language.detect_language("/tmp/some_file.liquid") == "Liquid"
     assert detect_language.detect_language("/tmp/some_file.lua") == "Lua"
     assert detect_language.detect_language(pwd + "/test/fixtures/matlab.m") == "MATLAB"
+    assert detect_language.detect_language("/tmp/some_file.nix") == "Nix"
     assert detect_language.detect_language(pwd + "/test/fixtures/objective-c.m") == "Objective-C"
 
     assert detect_language.detect_language(
