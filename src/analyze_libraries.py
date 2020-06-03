@@ -235,7 +235,7 @@ def _get_temp_repo_path():
 
 def _log_info(message, *argv):
     timed_message = "[%s] %s" % (datetime.now().strftime("%d/%m/%Y %H:%M:%S"), message)
-    # print(timed_message, *argv)
+    print(timed_message, *argv)
 
 
 def _ignore_gitignore(basedir):

@@ -63,7 +63,7 @@ local_projects() {
   #repostring=`printf "%s➕" "${concatenated_repos[@]}" | sed -e 's/➕$//g' `
   repostring=`printf "%s|,|" "${concatenated_repos[@]}" | sed -e 's/|,|$//g' `
 
-  python src/main.py $other_args "$repostring" ;\
+  winpty python src/main.py $other_args "$repostring" ;\
   wait ;\
   return
  
